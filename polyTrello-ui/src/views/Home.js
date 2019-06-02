@@ -12,9 +12,9 @@ export default class Home extends React.Component{
     render() {
         return (
             <div style={style} className="text-center">
-                <div className="col-md-4" style={{ marginTop : '10%' }}>
-                    <Typography variant="h3">
-                        Message marketing
+                <div className="col-md-6" style={{ marginTop : '10%' }}>
+                    <Typography variant="h4">
+                        Hello, Welcome to PolyTrello start organizing now
                     </Typography>
                 </div>
                 <div className="col-md-3" style={{ marginTop : '20px'}}>

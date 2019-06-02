@@ -63,7 +63,7 @@ export default class Task extends React.Component{
         e.preventDefault();
 
         if(window.confirm("Are you sure you want to delete this task ?"))
-            axios.delete(`http://localhost:8080/deleteTask/${this.props.task.id}`)
+            axios.delete(`http://mamadembele.fr:8080/deleteTask/${this.props.task.id}`)
                 .then(res => {
                     console.log(res.data);
                     if(res.data.status === 'success')
@@ -84,13 +84,12 @@ export default class Task extends React.Component{
         data.append("title", this.state.title);
         data.append("done", this.state.done);
 
-        axios.put(`http://localhost:8080/modifyTask/${this.props.task.id}`, data)
+        axios.put(`http://mamadembele.fr:8080/modifyTask/${this.props.task.id}`, data)
             .then(res => {
                 if(res.data.status === 'success')
                     window.location.reload();
                 else
                     alert("An error occured");
-                console.log(res.data);
             })
             .catch(error => {
                 alert("An error occured");
@@ -182,7 +181,6 @@ export default class Task extends React.Component{
                                 <IconButton
                                     aria-label="Ok"
                                     onClick={() => this.setState({editing: false})}
-                                    //onClick={this.addTask}
                                 >
                                     <Cancel/>
                                 </IconButton>

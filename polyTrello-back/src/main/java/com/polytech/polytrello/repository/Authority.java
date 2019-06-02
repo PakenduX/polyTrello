@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * L'entité définissant les authorités
+ * des utilisateurs
+ */
 @Entity
 @Table(name = "Authorities")
 public class Authority {

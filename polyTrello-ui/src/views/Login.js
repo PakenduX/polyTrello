@@ -25,7 +25,7 @@ export default class Login extends React.Component {
             password : this.state.password,
             enabled : true
         };
-        axios.post('http://localhost:8080/login', data)
+        axios.post('http://mamadembele.fr:8080/login', data)
             .then(res => {
                 console.log(res);
                 if(res.data.status === 'error')

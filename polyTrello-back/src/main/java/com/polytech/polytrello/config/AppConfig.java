@@ -8,6 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * La classe de configuration de l'applicaiton
+ * @author Mama et Zakaria
+ */
+
 @Configuration
 public class AppConfig {
 
@@ -15,10 +20,10 @@ public class AppConfig {
     @Bean
     DataSource datasource() {
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/polyChatDB?serverTimezone=UTC");
-        dataSource.setUser("polyChatUser");
-        dataSource.setPassword("polyChatPassword");
-        dataSource.setDatabaseName("polyChatDB");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/polyTrelloDB?serverTimezone=UTC");
+        dataSource.setUser("polyTrelloUser");
+        dataSource.setPassword("polyTrelloPassword");
+        dataSource.setDatabaseName("polyTrelloDB");
 
         return dataSource;
     }

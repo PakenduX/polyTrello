@@ -12,7 +12,7 @@ export default class UserHome extends React.Component{
 
         this.state = {
             tasks: [],
-            title: '',
+            title: null,
             error: ''
         };
 
@@ -20,8 +20,7 @@ export default class UserHome extends React.Component{
     }
 
     async componentDidMount() {
-
-        await axios.get(`http://localhost:8080/getTasks/${localStorage.getItem("username")}`)
+        await axios.get(`http://mamadembele.fr:8080/getTasks/${localStorage.getItem("username")}`)
             .then(res => {
                 this.setState({tasks: res.data});
             })
@@ -33,22 +32,26 @@ export default class UserHome extends React.Component{
     addTask(e){
         e.preventDefault();
         let data = new FormData();
-        data.append("title", this.state.title);
-        axios.post(
-            `http://localhost:8080/addTask/${localStorage.getItem("username")}`, data)
-            .then(res => {
-                if(res.data.status === "success")
-                    window.location.reload();
-                else
+        if(this.state.title === null)
+            alert("Please write the title");
+        else{
+            data.append("title", this.state.title);
+            axios.post(
+                `http://mamadembele.fr:8080/addTask/${localStorage.getItem("username")}`, data)
+                .then(res => {
+                    if(res.data.status === "success")
+                        window.location.reload();
+                    else
+                        this.setState({
+                            error: <div className="alert alert-danger text-center">An error occured</div>
+                        });
+                })
+                .catch(error => {
                     this.setState({
                         error: <div className="alert alert-danger text-center">An error occured</div>
                     });
-            })
-            .catch(error => {
-                this.setState({
-                    error: <div className="alert alert-danger text-center">An error occured</div>
                 });
-            });
+        }
     }
 
     render() {
@@ -56,9 +59,9 @@ export default class UserHome extends React.Component{
         let tasks = [];
 
         if(this.state.tasks.length !== 0)
-            this.state.tasks.map((task) => {
-                tasks.push(<div className="col-md-3" key={task.id}> <Task task={task}/></div>);
-            });
+            this.state.tasks.map((task) =>
+                tasks.push(<div className="col-md-3" key={task.id}> <Task task={task}/></div>)
+            );
 
         return(
             <div className="container-fluid" style={{ marginTop : '100px'}}>

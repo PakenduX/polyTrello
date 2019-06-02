@@ -7,6 +7,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+/**
+ * La classe permettant de faire tous les accès à la base
+ * de données pour l'entité User
+ */
+
 @Transactional
 public class JpaUserRepository implements UserRepository {
 

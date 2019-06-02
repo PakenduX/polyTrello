@@ -6,6 +6,11 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * La classe permettant de faire tous les accès à la base
+ * de données pour l'entité Task
+ */
+
 @Transactional
 public class JpaTaskRepository implements TaskRepository {
 

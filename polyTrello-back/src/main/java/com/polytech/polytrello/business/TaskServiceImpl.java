@@ -5,6 +5,10 @@ import com.polytech.polytrello.repository.TaskRepository;
 
 import java.util.List;
 
+/**
+ * L'implémentation du service des tâches
+ * @author Mama et Zakaria
+ */
 public class TaskServiceImpl implements TaskService {
 
     private TaskRepository taskRepository;

@@ -6,6 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * L'entité définissant les utilisateurs
+ * @author Mama et Zakaria
+ */
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {

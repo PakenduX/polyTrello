@@ -34,7 +34,7 @@ export default class Register extends React.Component {
                 enabled : true
             };
 
-            axios.post('http://localhost:8080/register', data)
+            axios.post('http://mamadembele.fr:8080/register', data)
                 .then(res => {
                     if(res.data.status === 'error')
                         this.setState({

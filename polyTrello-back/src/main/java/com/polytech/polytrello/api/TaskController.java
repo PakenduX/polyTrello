@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  */
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://mamadembele.fr:5000")
 @RestController
 public class TaskController {
 
@@ -39,8 +40,12 @@ public class TaskController {
     public HashMap<String, String> addTask(
             @RequestParam("title") String title,
             @PathVariable("username") String username){
-        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         HashMap<String, String> response = new HashMap<>();
+        if(!auth.getName().equals(username)){
+            response.put("status", "error");
+            return response;
+        }
         try {
             taskService.save(new Task(title, new Date(), username));
             response.put("status", "success");
@@ -59,13 +64,12 @@ public class TaskController {
 
     @GetMapping("/getTasks/{username}")
     public List getTasks(@PathVariable("username") String username, HttpServletResponse response){
-        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //System.out.println("username pour auth = " + auth.getName());
-        /*if(!auth.getName().equals(username)){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(!auth.getName().equals(username)){
             List list = new ArrayList();
             list.add(-1);
             return list;
-        }*/
+        }
         return taskService.getTasks(username);
     }
 

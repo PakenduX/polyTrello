@@ -3,6 +3,10 @@ package com.polytech.polytrello.repository;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * L'entité définissant la tâche
+ * @author Mama et Zakaria
+ */
 @Entity
 @Table(name = "task")
 public class Task {

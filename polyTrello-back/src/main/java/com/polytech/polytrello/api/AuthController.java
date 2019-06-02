@@ -23,7 +23,7 @@ import java.util.HashMap;
  *
  */
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://mamadembele.fr:5000")
 @RestController
 public class AuthController {
 

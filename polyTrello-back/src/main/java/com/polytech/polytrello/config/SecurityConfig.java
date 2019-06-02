@@ -13,6 +13,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
+/**
+ * La classe de configuration de sécurité,
+ * Nous utilisons une connexion jdbc avec une base de
+ * données MySQL
+ * @author Mama et Zakaria
+ */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,12 +28,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
 
+    /**
+     * Ici pour la configuration hppSecurity j'ai mis toutes les routes
+     * à permitAll car j'avais un problème avec l'appel API avec axios.
+     * Donc je m'assure que l'utilisateur est bien connecté avant au niveau
+     * du controlleur.
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
